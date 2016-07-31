@@ -1,0 +1,60 @@
+int ego()
+{
+	//Should Janice save MP for heals?
+	int SAVEMP=0;
+	if (difficulty != 2)
+	{
+		for (int n=0; n<400; n++)
+		{
+			if( loadTarget(n) == 0 && target.team == self.team)
+			{
+				SAVEMP=1;
+			}
+		}
+	}
+	//Heal
+	if ((self.dark_hp - self.hp) > 100 && self.mp >= 200)
+	{
+		DuJ();
+	}else
+	{
+		for (int n=0; n<400; n++)
+		{
+			if( loadTarget(n) == 0 && target.team == self.team && (target.dark_hp - target.hp) > 100 && self.mp >= 200)
+			{
+				DuJ();
+			}
+		}
+	}
+	//Ice Blast
+	if (self.mp > 275 || (SAVEMP == 0 && self.mp > 75 ))
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 220 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+	}
+	//Freezing Disk
+	if (self.mp > 450 || (SAVEMP == 0 && self.mp > 250 ))
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 15)
+		{
+			DrJ();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 300 && abs(self.z-target.z) < 15)
+		{
+			DlJ();
+		}
+	}
+	//Overwhelming Disaster
+	if (self.mp > 300 || (SAVEMP == 0 && self.mp > 100 ))
+	{
+		if (abs(self.x-target.x)>=0)
+		{
+		DuA();
+		}
+	}
+return 0;
+}
