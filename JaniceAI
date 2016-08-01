@@ -1,34 +1,34 @@
 int ego()
 {
-//Are there any living allies? Does anyone need heals?
-bool GOTALLY,NEEDHEAL=false;
-for (int n=0; n<400; n++)
-{
-if(loadTarget(n) == 0 && target.hp > 0)
-{
-GOTALLY=true;
-if( (target.dark_hp - target.hp) >= 100)
-{
-NEEDHEAL=true;
-}
-}
-}
-if ( (self.dark_hp - self.hp) >= 100)
-{
-NEEDHEAL=true;
-}
+	//Are there any living allies? Does anyone need heals?
+	bool GOTALLY,NEEDHEAL=false;
+	for (int n=0; n<400; n++)
+	{
+		if(loadTarget(n) == 0 && target.hp > 0)
+		{
+			GOTALLY=true;
+			if( (target.dark_hp - target.hp) >= 100)
+			{
+				NEEDHEAL=true;
+			}
+		}
+	}
+	if ( (self.dark_hp - self.hp) >= 100)
+	{
+		NEEDHEAL=true;
+	}
 	//Should Janice save MP for heals?
 	bool SAVEMP=false;
 	if (difficulty != 2 && GOTALLY == true)
 	{
-				SAVEMP=true;
-		}
+		SAVEMP=true;
+	}
 	//Heal
 	if (NEEDHEAL == true && self.mp >= 200)
 	{
 		DuJ();
 	}
-			//Ice Blast
+	//Ice Blast
 	if (self.mp > 275 || (SAVEMP == false && self.mp > 75 ))
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
