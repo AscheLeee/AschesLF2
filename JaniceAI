@@ -31,7 +31,11 @@ int ego()
 	//Prioritise healing over damage dealing - only on difficult or crazy
 	if (difficulty <= 0)
 	{
-	return 0;
+	GOTHEAL=CHECKHEAL();
+		if (GOTHEAL==false && NEEDHEAL==true)
+		{
+		return 0;
+		}
 	}
 	//Ice Blast
 	if (self.mp > 275 || (SAVEMP == false && self.mp > 75 ))
