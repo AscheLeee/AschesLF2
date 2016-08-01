@@ -1,19 +1,19 @@
 int ego()
 {
 	//Are there any living allies? Does anyone need heals?
-	bool GOTALLY,NEEDHEAL=false;
+	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL();
 	for (int n=0; n<400; n++)
 	{
 		if(loadTarget(n) == 0 && target.hp > 0)
 		{
 			GOTALLY=true;
-			if( (target.dark_hp - target.hp) >= 100)
+			if( (target.dark_hp - target.hp) >= 100 && GOTHEAL==false)
 			{
 				NEEDHEAL=true;
 			}
 		}
 	}
-	if ( (self.dark_hp - self.hp) >= 100)
+	if ( (self.dark_hp - self.hp) >= 100 && GOTHEAL==false)
 	{
 		NEEDHEAL=true;
 	}
@@ -27,6 +27,11 @@ int ego()
 	if (NEEDHEAL == true && self.mp >= 200)
 	{
 		DuJ();
+	}
+	//Prioritise healing over damage dealing - difficult or crazy
+	if (difficulty <= 0)
+	{
+	return 0;
 	}
 	//Ice Blast
 	if (self.mp > 275 || (SAVEMP == false && self.mp > 75 ))
@@ -59,4 +64,16 @@ int ego()
 		}
 	}
 return 0;
+}
+
+bool CHECKHEAL() //check if someone else already casted an area heal
+{
+	for (int n=0; n<400; n++)
+	{
+		if(loadTarget(n) == 3 && target.id == 219)
+		{
+			return true;
+		}
+	}
+	return false;
 }
