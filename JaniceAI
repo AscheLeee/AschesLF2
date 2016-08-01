@@ -17,7 +17,7 @@ int ego()
 	{
 		NEEDHEAL=true;
 	}
-	//Should Janice save MP for heals?
+	//Save MP for heals? /*only on normal or higher*/
 	bool SAVEMP=false;
 	if (difficulty != 2 && GOTALLY == true)
 	{
@@ -28,7 +28,7 @@ int ego()
 	{
 		DuJ();
 	}
-	//Prioritise healing over damage dealing - difficult or crazy
+	//Prioritise healing over damage dealing - only on difficult or crazy
 	if (difficulty <= 0)
 	{
 	return 0;
