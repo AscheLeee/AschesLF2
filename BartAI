@@ -1,7 +1,7 @@
 int ego() //Work In Progress, please wait warmly until it is ready.
 {
   //Are there any living allies? Does anyone need heals?
-	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL(),USINGSKILL=CHECKSKILL();
+	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL();
 	for (int n=0; n<400; n++)
 	{
 	  if(loadTarget(n) == 0 && target.hp > 0)
@@ -23,21 +23,20 @@ int ego() //Work In Progress, please wait warmly until it is ready.
 	{
 		SAVEMP=true;
 	}
-	//TODO - EVASIVE PLAYSTYLE - KEEP AWAY FROM ENEMIES - NORMAL OR HIGHER
 	//Heal
-	if (NEEDHEAL == true && self.mp >= 200 && (abs(self.x - target.x) > 200 || difficulty == 2 ) && USINGSKILL == false)
+	if (NEEDHEAL == true && self.mp >= 200 && (abs(self.x - target.x) > 200 || difficulty == 2 ) && self.frame < 235)
 	{
 		DuJ();
 	}
 	//Melody of Mana
-	if (self.hp > 300 && self.mp < 300 && (abs(self.x - target.x) > 200 || difficulty == 2 ) && USINGSKILL == false)
+	if (self.hp > 300 && self.mp < 300 && (abs(self.x - target.x) > 200 || difficulty == 2 ) && self.frame < 235)
 	{
 		DdJ(); //Begin Melody of Mana
-  }
-  if (self.frame == 275)
-  {
-    A(1,0);
-  }
+	}
+	if (self.frame == 275)
+	{
+		A(1,0);
+	}
 	//Prioritise healing over damage dealing - only on difficult or crazy
 	if (difficulty <= 0)
 	{
@@ -46,27 +45,16 @@ int ego() //Work In Progress, please wait warmly until it is ready.
 		{
 		return 0;
 		}
-  }
+  	}
 }
 bool CHECKHEAL() //check if someone already casted an area heal
 {
 	for (int n=0; n<400; n++)
 	{
-		if(loadTarget(n) == 3 && target.id == 219)
+		if(loadTarget(n) == 3 && target.id == 219 && target.frame >= 3)
 		{
 			return true;
 		}
 	}
 	return false;
-}
-bool CHECKSKILL() //check if self is using a skill
-{
-  if(self.frame >= 235)
-  {
-    return true;
-  }
-  else
-  {
-  return false;
-  }
 }
