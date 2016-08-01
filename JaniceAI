@@ -38,7 +38,7 @@ int ego()
 		}
 	}
 	//Ice Blast
-	if (self.mp > 275 || (SAVEMP == false && self.mp > 75 ))
+	if (self.mp >= 275 || (SAVEMP == false && self.mp >= 75 ))
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -49,7 +49,7 @@ int ego()
 		}
 	}
 	//Freezing Disk
-	if (self.mp > 450 || (SAVEMP == false && self.mp > 250 ))
+	if (self.mp >= 450 || (SAVEMP == false && self.mp >= 250 ))
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 15)
 		{
@@ -60,7 +60,7 @@ int ego()
 		}
 	}
 	//Overwhelming Disaster
-	if (self.mp > 300 || (SAVEMP == 0 && self.mp > 100 ))
+	if (self.mp >= 300 || (SAVEMP == 0 && self.mp >= 100 ))
 	{
 		if (abs(self.x-target.x)>=0)
 		{
@@ -70,7 +70,7 @@ int ego()
 return 0;
 }
 
-bool CHECKHEAL() //check if someone else already casted an area heal
+bool CHECKHEAL() //check if someone already casted an area heal
 {
 	for (int n=0; n<400; n++)
 	{
