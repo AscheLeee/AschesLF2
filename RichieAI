@@ -43,7 +43,7 @@ int ego()//Work in progress, please wait warmly until it is ready
 			J(1,0); //preview water
     		}
   	break;
-  	case 252:
+  	case 252: //preview water
   		D(1,0); //confirm water
 	break;
 	}
@@ -77,6 +77,18 @@ return 0;
 void FIRE()
 {
 	BLAST();
+	//Aux
+	if ( self.mp >= 150 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38)
+	{
+		if ((self.x-target.x) < 0)
+		{
+			DrA();
+		}
+		else
+		{
+			DlA();
+		}
+	}
 }
 
 void EARTH()
