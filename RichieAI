@@ -4,8 +4,8 @@ int ego()//Work in progress, please wait warmly until it is ready
 	//Check if holding an item, else try to make an item
 	if(self.weapon_held == -1 && self.mp >= 100 && (self.frame < 235 || self.frame > 260))
 	{
-		CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
-		DdJ();
+		CHOOSE=rand(5); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
+		DdJ();		
 	}
 	if(self.frame == 237) //preview fire
 	{
@@ -117,8 +117,20 @@ void AIR()
 
 void WATER()
 {
-	
+	bool NEEDHEAL=false,GOTHEAL=CHECKHEAL();
+	for(n=0; n<400; n++)
+	{
+		if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team && (target.dark_hp - target.hp) >=100 && GOTHEAL == false)
+		{
+			NEEDHEAL=true;
+		}
+	}
 	BLAST();
+	//detonate
+	if(NEEDHEAL == true && abs(self.x-target.x) > 0 && self.mp >= 300)
+	{
+		DjA();
+	}
 }
 
 void SPIRIT()
