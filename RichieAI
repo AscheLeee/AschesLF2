@@ -68,7 +68,7 @@ int ego()//Work in progress, please wait warmly until it is ready
     void WATER();
     return 0;
   }
-  if (self.weapon_held == 9504)
+  if (self.weapon_held == 9505)
   {
     void SPIRIT();
     return 0;
