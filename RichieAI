@@ -8,7 +8,7 @@ int ego()//Work in progress, please wait warmly until it is ready
   //Check if holding an item, else try to make an item
   if(self.weapon_held == -1 && self.mp >= 100)
   {
-    Ddj();
+    DdJ();
     if(self.frame == 237)
     {
       if(CHOOSE == 0)
@@ -54,27 +54,27 @@ int ego()//Work in progress, please wait warmly until it is ready
   //Call a function based on item in hand
   if (self.weapon_held == 9501)
   {
-    void FIRE();
+    FIRE();
     return 0;
   }
   if (self.weapon_held == 9502)
   {
-    void EARTH();
+    EARTH();
     return 0;
   }
   if (self.weapon_held == 9503)
   {
-    void AIR();
+    AIR();
     return 0;
   }
   if (self.weapon_held == 9504)
   {
-    void WATER();
+    WATER();
     return 0;
   }
   if (self.weapon_held == 9505)
   {
-    void SPIRIT();
+    SPIRIT();
     return 0;
   }
 return 0;
