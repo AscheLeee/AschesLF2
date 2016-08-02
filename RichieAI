@@ -1,56 +1,55 @@
 int ego()//Work in progress, please wait warmly until it is ready
 {
   int CHOOSE;
-  if(self.frame < 235 || self.frame > 260)
-  {
-    CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
-  }
   //Check if holding an item, else try to make an item
   if(self.weapon_held == -1 && self.mp >= 100 && (self.frame < 235 || self.frame > 260))
   {
+    CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
     DdJ();
-    if(self.frame == 237)
+  }
+  if(self.frame == 237) //preview fire
+  {
+    if(CHOOSE == 0)
     {
-      if(CHOOSE == 0)
-      {
-        D(1,0);
-      }else if(CHOOSE <= 2)
-      {
-        A(1,0);
-        if(self.frame == 242 )
-        {
-          if(CHOOSE == 1)
-          {
-            D(1,0);
-          }else
-          {
-            A(1,0);
-            if(self.frame == 247)
-            {
-            D(1,0);
-            }
-          }
-        }
-      }else if(CHOOSE >= 3)
-      {
-        J(1,0);
-        if(self.frame == 257)
-        {
-          if(CHOOSE == 4)
-          {
-            D(1,0);
-          }else
-          {
-            J(1,0);
-            if(self.frame == 252)
-            {
-              D(1,0);
-            }
-          }
-        }
-      }
+      D(1,0); //confirm fire
+    }else if(CHOOSE <= 2)//forward cycling, for earth or air
+    {
+      A(1,0); 
+    }
+    else if(CHOOSE >=3) // backwards cycling, for spirit or water
+    {
+      J(1,0);
     }
   }
+  if(self.frame == 242 ) //preview earth
+  {
+    if(CHOOSE == 1)
+    {
+      D(1,0); //confirm earth
+    }else
+    {
+      A(1,0); //preview air
+    }
+  }
+  if(self.frame == 247)
+  {
+    D(1,0); //confirm air
+  }
+  if(self.frame == 257) //preview spirit
+  {
+    if(CHOOSE == 4)
+    {
+      D(1,0); //confirm spirit
+    }else
+    {
+      J(1,0); //preview water
+    }
+  }
+  if(self.frame == 252)
+  {
+    D(1,0); //confirm water
+  }
+  
   //Call a function based on item in hand
   if (self.weapon_held == 9501)
   {
@@ -82,10 +81,12 @@ return 0;
 
 void FIRE()
 {
+  BLAST();
 }
 
 void EARTH()
 {
+  BLAST();
 }
 
 void AIR()
@@ -94,8 +95,35 @@ void AIR()
 
 void WATER()
 {
+  BLAST();
 }
 
 void SPIRIT()
 {
+}
+
+void BLAST() //Item Innate Blast for FIRE/EARTH/WATER
+{
+	if (self.mp >= 75)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 220 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+	}
+}
+
+bool CHECKHEAL() //check if someone already casted an area heal
+{
+	for (int n=0; n<400; n++)
+	{
+		if(loadTarget(n) == 3 && target.id == 219 && target.frame <= 3 && target.team == self.team)
+		{
+			return true;
+		}
+	}
+	return false;
 }
