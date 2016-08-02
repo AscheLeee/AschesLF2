@@ -9,7 +9,7 @@ I am using mostly int ego() in my code, which is constantly called by the defaul
 
 In addition to the commonplace feature of being able to detect allies who need to be healed, I have invented two features which I think are quite new and unique: SAVEMP and CHECKHEAL.
 
-SAVEMP allows the healer AI to better manage its MP (Mana Points, a resource required for skills which regenerates over time); if active, when healing is not needed, although the AI will use offensive skills, they will always ensure that they conserve enough MP to immediately use a heal in case of emergencies. This feature can be disabled on easy mode, or if the AI is the last man standing on its team.
+SAVEMP allows the healer AI to better manage its MP (Mana Points, a resource required for skills, which regenerates over time); if active, when healing is not needed, although the AI will use offensive skills, they will always ensure that they conserve enough MP to immediately use a heal in case of emergencies. This feature can be disabled on easy mode, or if the AI is the last man standing on its team.
 
 CHECKHEAL allows the AI to check if there is already a heal that has been used, but not yet consumed. It prevents cases of the AI healing when someone else is already doing so, or healing twice consecutively when only once is required.
 
@@ -27,4 +27,4 @@ Janice is an easy-to-use healer character, so the AI is quite straightforward an
 
 Bart, like Janice, is capable of healing. However, he differs in two main aspects.
 
-Firstly, his skills take significantly longer to use. As such, I created a CHECKNEARFOE function to check if enemies are nearby before attempting to use skills that might be interrupted (Not applicable to easy mode). Secondly, he is able to cancel his skills before they are completed. As such, a check to ensure that he isn't currently using a skill before starting another skill is required. 
+Firstly, his skills take significantly longer to use. As such, I created a CHECKNEARFOE function to check if enemies are nearby before attempting to use skills that might be interrupted (Not applicable to easy mode). Secondly, he is able to cancel his skills before they are completed. As such, a check to ensure that he isn't currently using a skill before starting another skill is required, so that he does not end up wasting MP excessively by constantly cancelling his own skills.
