@@ -148,8 +148,7 @@ void BLAST() //Item Innate Blast for FIRE/EARTH/WATER
 
 bool CHECKHEAL() //check if someone already casted an area heal
 {
-	int n=0;
-	for (n=0; n<400; n++)
+	for (int n=0; n<400; n++)
 	{
 		if(loadTarget(n) == 3 && target.id == 219 && target.frame <= 3 && target.team == self.team)
 		{
