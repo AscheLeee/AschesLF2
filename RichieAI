@@ -7,8 +7,9 @@ int ego()//Work in progress, please wait warmly until it is ready
 		CHOOSE=rand(5); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
 		DdJ();		
 	}
-	if(self.frame == 237) //preview fire
+	switch(self.frame)
 	{
+	case 237: //preview fire
 		if(CHOOSE == 0)
 		{
 			D(1,0); //confirm fire
@@ -20,9 +21,8 @@ int ego()//Work in progress, please wait warmly until it is ready
 		{
 			J(1,0);
 		}
-	}
-	if(self.frame == 242 ) //preview earth
-	{
+	break;
+	case 242: //preview earth
 		if(CHOOSE == 1)
 		{
 			D(1,0); //confirm earth
@@ -30,13 +30,11 @@ int ego()//Work in progress, please wait warmly until it is ready
 		{
 			A(1,0); //preview air
 		}
-	}
-	if(self.frame == 247)
-	{
+	break;
+	case 247:
 		D(1,0); //confirm air
-	}
-	if(self.frame == 257) //preview spirit
-	{
+	break;
+	case 257: //preview spirit
 		if(CHOOSE == 4)
 		{
 			D(1,0); //confirm spirit
@@ -44,37 +42,34 @@ int ego()//Work in progress, please wait warmly until it is ready
     		{
 			J(1,0); //preview water
     		}
-  	}
-  	if(self.frame == 252)
-  	{
+  	break;
+  	case 252:
   		D(1,0); //confirm water
+	break;
 	}
-  
+	
 	//Call a function based on item in hand
-	if (self.weapon_held == 9501)
+	switch(self.weapon_held)
 	{
+		case 9501:
 		FIRE();
-		return 0;
-	}
-	if (self.weapon_held == 9502)
-	{
+		break;
+
+		case 9502:
 		EARTH();
-		return 0;
-	}
-	if (self.weapon_held == 9503)
-	{
+		break;
+	
+		case 9503:
 		AIR();
-		return 0;
-	}
-	if (self.weapon_held == 9504)
-	{
+		break;
+	
+		case 9504:
 		WATER();
-		return 0;
-	  }
-	if (self.weapon_held == 9505)
-	{
+		break;
+		
+		case 9505:
 		SPIRIT();
-		return 0;
+		break;
  	}
 return 0;
 }
