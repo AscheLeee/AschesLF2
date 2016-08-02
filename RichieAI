@@ -1,9 +1,13 @@
 int ego()//Work in progress, please wait warmly until it is ready
 {
+  int CHOOSE;
+  if(self.state < 235 || self.state > 260)
+  {
+    CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
+  }
   //Check if holding an item, else try to make an item
   if(self.weapon_held == -1 && self.mp >= 100)
   {
-    int CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
     Ddj();
     if(self.frame == 237)
     {
