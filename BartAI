@@ -66,6 +66,7 @@ int ego()
 	{
 		DuJ();
 	}
+return 0;
 }
 bool CHECKHEAL() //check if someone already casted an area heal
 {
