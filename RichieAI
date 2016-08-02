@@ -113,7 +113,7 @@ void AIR()
 void WATER()
 {
 	bool NEEDHEAL=false,GOTHEAL=CHECKHEAL();
-	for(n=0; n<400; n++)
+	for(int n=0; n<400; n++)
 	{
 		if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team && (target.dark_hp - target.hp) >=100 && GOTHEAL == false)
 		{
@@ -124,7 +124,7 @@ void WATER()
 	//detonate
 	if(NEEDHEAL == true && abs(self.x-target.x) > 0 && self.mp >= 300)
 	{
-		DjA();
+		DJA();
 	}
 }
 
