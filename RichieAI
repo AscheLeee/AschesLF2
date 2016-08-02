@@ -1,101 +1,124 @@
 int ego()//Work in progress, please wait warmly until it is ready
 {
-  int CHOOSE;
-  //Check if holding an item, else try to make an item
-  if(self.weapon_held == -1 && self.mp >= 100 && (self.frame < 235 || self.frame > 260))
-  {
-    CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
-    DdJ();
-  }
-  if(self.frame == 237) //preview fire
-  {
-    if(CHOOSE == 0)
-    {
-      D(1,0); //confirm fire
-    }else if(CHOOSE <= 2)//forward cycling, for earth or air
-    {
-      A(1,0); 
-    }
-    else if(CHOOSE >=3) // backwards cycling, for spirit or water
-    {
-      J(1,0);
-    }
-  }
-  if(self.frame == 242 ) //preview earth
-  {
-    if(CHOOSE == 1)
-    {
-      D(1,0); //confirm earth
-    }else
-    {
-      A(1,0); //preview air
-    }
-  }
-  if(self.frame == 247)
-  {
-    D(1,0); //confirm air
-  }
-  if(self.frame == 257) //preview spirit
-  {
-    if(CHOOSE == 4)
-    {
-      D(1,0); //confirm spirit
-    }else
-    {
-      J(1,0); //preview water
-    }
-  }
-  if(self.frame == 252)
-  {
-    D(1,0); //confirm water
-  }
+	int CHOOSE;
+	//Check if holding an item, else try to make an item
+	if(self.weapon_held == -1 && self.mp >= 100 && (self.frame < 235 || self.frame > 260))
+	{
+		CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
+		DdJ();
+	}
+	if(self.frame == 237) //preview fire
+	{
+		if(CHOOSE == 0)
+		{
+			D(1,0); //confirm fire
+		}else if(CHOOSE <= 2)//forward cycling, for earth or air
+		{
+			A(1,0); 
+		}
+		else if(CHOOSE >=3) // backwards cycling, for spirit or water
+		{
+			J(1,0);
+		}
+	}
+	if(self.frame == 242 ) //preview earth
+	{
+		if(CHOOSE == 1)
+		{
+			D(1,0); //confirm earth
+		}else
+		{
+			A(1,0); //preview air
+		}
+	}
+	if(self.frame == 247)
+	{
+		D(1,0); //confirm air
+	}
+	if(self.frame == 257) //preview spirit
+	{
+		if(CHOOSE == 4)
+		{
+			D(1,0); //confirm spirit
+		}else
+    		{
+			J(1,0); //preview water
+    		}
+  	}
+  	if(self.frame == 252)
+  	{
+  		D(1,0); //confirm water
+	}
   
-  //Call a function based on item in hand
-  if (self.weapon_held == 9501)
-  {
-    FIRE();
-    return 0;
-  }
-  if (self.weapon_held == 9502)
-  {
-    EARTH();
-    return 0;
-  }
-  if (self.weapon_held == 9503)
-  {
-    AIR();
-    return 0;
-  }
-  if (self.weapon_held == 9504)
-  {
-    WATER();
-    return 0;
-  }
-  if (self.weapon_held == 9505)
-  {
-    SPIRIT();
-    return 0;
-  }
+	//Call a function based on item in hand
+	if (self.weapon_held == 9501)
+	{
+		FIRE();
+		return 0;
+	}
+	if (self.weapon_held == 9502)
+	{
+		EARTH();
+		return 0;
+	}
+	if (self.weapon_held == 9503)
+	{
+		AIR();
+		return 0;
+	}
+	if (self.weapon_held == 9504)
+	{
+		WATER();
+		return 0;
+	  }
+	if (self.weapon_held == 9505)
+	{
+		SPIRIT();
+		return 0;
+ 	}
 return 0;
 }
 
 void FIRE()
 {
-  BLAST();
+	BLAST();
 }
 
 void EARTH()
 {
-  BLAST();
+	BLAST();
 }
 
 void AIR()
 {
+	//Innate Blast
+	if (self.mp >= 75)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+	}
+	//Aux
+	if (self.mp >= 150)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrJ();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlJ();
+		}
+	}
 }
 
 void WATER()
 {
-  BLAST();
+	
+	BLAST();
 }
 
 void SPIRIT()
