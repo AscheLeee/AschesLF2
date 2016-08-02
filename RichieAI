@@ -1,0 +1,97 @@
+int ego()//Work in progress, please wait warmly until it is ready
+{
+  //Check if holding an item, else try to make an item
+  if(self.weapon_held == -1 && self.mp >= 100)
+  {
+    int CHOOSE=rand(4); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
+    Ddj();
+    if(self.frame == 237)
+    {
+      if(CHOOSE == 0)
+      {
+        D(1,0);
+      }else if(CHOOSE <= 2)
+      {
+        A(1,0);
+        if(self.frame == 242 )
+        {
+          if(CHOOSE == 1)
+          {
+            D(1,0);
+          }else
+          {
+            A(1,0);
+            if(self.frame == 247)
+            {
+            D(1,0);
+            }
+          }
+        }
+      }else if(CHOOSE >= 3)
+      {
+        J(1,0);
+        if(self.frame == 257)
+        {
+          if(CHOOSE == 4)
+          {
+            D(1,0);
+          }else
+          {
+            J(1,0);
+            if(self.frame == 252)
+            {
+              D(1,0);
+            }
+          }
+        }
+      }
+    }
+  }
+  //Call a function based on item in hand
+  if (self.weapon_held == 9501)
+  {
+    void FIRE();
+    return 0;
+  }
+  if (self.weapon_held == 9502)
+  {
+    void EARTH();
+    return 0;
+  }
+  if (self.weapon_held == 9503)
+  {
+    void AIR();
+    return 0;
+  }
+  if (self.weapon_held == 9504)
+  {
+    void WATER();
+    return 0;
+  }
+  if (self.weapon_held == 9504)
+  {
+    void SPIRIT();
+    return 0;
+  }
+return 0;
+}
+
+void FIRE()
+{
+}
+
+void EARTH()
+{
+}
+
+void AIR()
+{
+}
+
+void WATER()
+{
+}
+
+void SPIRIT()
+{
+}
