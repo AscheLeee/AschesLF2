@@ -156,11 +156,12 @@ void SPIRIT()
 			{
 				if ((self.x-target.x) < -50 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -50)
 				{
-				DrJ();
+					DrJ();
 				}
-			}else if ((self.x-target.x) > 50 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -50)
-			{
-				DlJ();
+				else if ((self.x-target.x) > 50 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -50)
+				{
+					DlJ();
+				}
 			}
 		}
 	}
