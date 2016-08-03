@@ -155,8 +155,9 @@ void SPIRIT()
 			if(loadTarget(n) == 3 && target.team != self.team && target.state == 3000)
 			{
 				if ((self.x-target.x) < -50 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -50)
-			{
+				{
 				DrJ();
+				}
 			}else if ((self.x-target.x) > 50 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -50)
 			{
 				DlJ();
