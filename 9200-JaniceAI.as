@@ -38,7 +38,7 @@ int ego()
 		}
 	}
 	//Ice Blast
-	int ISFOE = CHECKFOE();
+	bool ISFOE = CHECKFOE();
 	if (ISFOE == true && (self.mp >= 275 || (SAVEMP == false && self.mp >= 75 )))
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
