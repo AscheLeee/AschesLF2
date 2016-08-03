@@ -1,8 +1,8 @@
 int ego()
 {
 	//Are there any living allies? Does anyone need heals?
-	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL();
 	int FOE=target.num;
+	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL();
 	for (int n=0; n<400; n++)
 	{
 		if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team)
@@ -31,8 +31,7 @@ int ego()
 	}
 	//Ice Blast
 	loadTarget(FOE);
-	bool ISFOE = CHECKFOE();
-	if (ISFOE == true && (self.mp >= 275 || (SAVEMP == false && self.mp >= 75 )))
+	if (self.mp >= 275 || (SAVEMP == false && self.mp >= 75 ))
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -43,7 +42,7 @@ int ego()
 		}
 	}
 	//Freezing Disk
-	if (ISFOE == true && (self.mp >= 450 || (SAVEMP == false && self.mp >= 250 )))
+	if (self.mp >= 450 || (SAVEMP == false && self.mp >= 250 ))
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 15)
 		{
@@ -54,7 +53,7 @@ int ego()
 		}
 	}
 	//Overwhelming Disaster
-	if (ISFOE == true && (self.mp >= 300 || (SAVEMP == false && self.mp >= 100 )))
+	if (self.mp >= 300 || (SAVEMP == false && self.mp >= 100 ))
 	{
 		if (abs(self.x-target.x)>=0)
 		{
@@ -74,16 +73,4 @@ bool CHECKHEAL() //check if someone already casted an area heal
 		}
 	}
 	return false;
-}
-
-bool CHECKFOE() //check if target is enemy
-{
-	if(target.team != self.team && target.type == 0) 
-	{
-		return true;
-	}
-	else
-	{
-	return false;
-	}
 }
