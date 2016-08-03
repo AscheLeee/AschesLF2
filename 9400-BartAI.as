@@ -1,6 +1,8 @@
 int ego()
 {
-  	//Are there any living allies? Does anyone need heals?
+	bool NEARFOE=CHECKNEARFOE(); 	//Check for nearby enemies before playing a song? /*only for normal or higher*/
+	int FOE=target.num;
+	//Are there any living allies? Does anyone need heals?
 	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL();
 	for (int n=0; n<400; n++)
 	{
@@ -23,8 +25,6 @@ int ego()
 	{
 		SAVEMP=true;
 	}
-	//Check for nearby enemies before playing a song? /*only for normal or higher*/
-	bool NEARFOE=CHECKNEARFOE();
 	//Heal
 	if (NEEDHEAL == true && self.mp >= 200 && NEARFOE == false && self.frame < 235)
 	{
@@ -39,21 +39,21 @@ int ego()
 	{
 		A(1,0);
 	}
-	bool ISFOE=CHECKFOE();
+	loadTarget(FOE);
 	//Dirge for the Deceased
-	if (NEARFOE == false && ISFOE == true && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
+	if (NEARFOE == false && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
 	{
 		if (self.facing == true)
 		{
-			DlJ();
+			DlA();
 		}	
 		else
 		{
-			DrJ();
+			DrA();
 		}
 	}
 	//Sonata of the Death
-	if (ISFOE==true && self.frame <235 && SAVEMP == false && self.mp >= 350 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38)
+	if (self.frame <235 && SAVEMP == false && self.mp >= 350 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38)
 	{
 		DuJ();
 	}
@@ -72,19 +72,7 @@ bool CHECKHEAL() //check if someone already casted an area heal
 }
 bool CHECKNEARFOE() // check if enemies are nearby, only on normal or higher
 {
-	bool ISFOE=CHECKFOE();
-	if ((abs(self.x - target.x) < 200 || abs(self.z - target.z) < 100 ) && difficulty != 2 && ISFOE == true)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-bool CHECKFOE() //check if target is enemy
-{
-	if(target.team != self.team && target.type == 0) 
+	if ((abs(self.x - target.x) < 100 || abs(self.z - target.z) < 20 ) && difficulty != 2)
 	{
 		return true;
 	}
