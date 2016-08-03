@@ -49,27 +49,31 @@ int ego()//Work in progress, please wait warmly until it is ready
 	}
 	
 	//Call a function based on item in hand
-	switch(self.weapon_held)
+	if(self.weapon_held != -1)
 	{
-		case 9501:
-		FIRE();
-		break;
+		loadTarget(self.weapon_held);
+		switch(target.id)
+		{
+			case 9501:
+			FIRE();
+			break;
 
-		case 9502:
-		EARTH();
-		break;
+			case 9502:
+			EARTH();
+			break;
 	
-		case 9503:
-		AIR();
-		break;
-	
-		case 9504:
-		WATER();
-		break;
+			case 9503:
+			AIR();
+			break;
 		
-		case 9505:
-		SPIRIT();
-		break;
+			case 9504:
+			WATER();
+			break;
+		
+			case 9505:
+			SPIRIT();
+			break;
+		}
  	}
 return 0;
 }
@@ -142,6 +146,23 @@ void WATER()
 
 void SPIRIT()
 {
+	//Aux; attempt to deflect an incoming projectile with spirit shield. Chance increases with difficulty.
+	int BLOCKCHANCE=rand(4); //easy = 25%, normal = 50%, difficult = 75% crazy = 100%
+	if ((BLOCKCHANCE - difficulty) >= 1)
+	{
+		for(int n=0; n<400; n++)
+		{
+			if(loadTarget(n) == 3 && target.team != self.team && target.state == 3000)
+			{
+				if ((self.x-target.x) < -50 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -50)
+			{
+				DrJ();
+			}else if ((self.x-target.x) > 50 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -50)
+			{
+				DlJ();
+			}
+		}
+	}
 }
 
 void BLAST() //Item Innate Blast for FIRE/EARTH/WATER
@@ -168,13 +189,4 @@ bool CHECKHEAL() //check if someone already casted an area heal
 		}
 	}
 	return false;
-}
-
-bool CHECKBULLET() //check if there's an incoming hostile bullet
-{//mobile doesn't have indentation, deal with it. 
-  for(int n=0; n<400; n++) //WIP
-  {
-     if(loadTarget(n) == 3 && target.team != self.team && target.state == 3000)
-     {
-        if
 }
