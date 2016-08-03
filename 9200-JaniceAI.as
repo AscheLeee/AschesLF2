@@ -2,6 +2,7 @@ int ego()
 {
 	//Are there any living allies? Does anyone need heals?
 	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL();
+	int FOE=target.num;
 	for (int n=0; n<400; n++)
 	{
 		if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team)
@@ -29,6 +30,7 @@ int ego()
 		DuJ();
 	}
 	//Ice Blast
+	loadTarget(FOE);
 	bool ISFOE = CHECKFOE();
 	if (ISFOE == true && (self.mp >= 275 || (SAVEMP == false && self.mp >= 75 )))
 	{
