@@ -84,7 +84,7 @@ void COMBUST()
 
 bool CHECKNEARFOE() // check if enemies are nearby, only on normal or higher
 {
-	if ((abs(self.x - target.x) < 100 || abs(self.z - target.z) < 20 ) && difficulty != 2 && ISFOE == true)
+	if ((abs(self.x - target.x) < 100 || abs(self.z - target.z) < 20 ) && difficulty != 2)
 	{
 		return true;
 	}
