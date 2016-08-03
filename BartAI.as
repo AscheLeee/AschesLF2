@@ -48,9 +48,9 @@ int ego()
 		return 0;
 		}
   	}
-
+	bool ISFOE=CHECKFOE();
 	//Dirge for the Deceased
-	if (NEARFOE == false && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
+	if (NEARFOE == false && ISFOE == TRUE && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
 	{
 		if (self.facing == true)
 		{
@@ -62,7 +62,7 @@ int ego()
 		}
 	}
 	//Sonata of the Death
-	if (self.frame <235 && SAVEMP == false && self.mp >= 350 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38)
+	if (ISFOE==true && self.frame <235 && SAVEMP == false && self.mp >= 350 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38)
 	{
 		DuJ();
 	}
@@ -81,12 +81,24 @@ bool CHECKHEAL() //check if someone already casted an area heal
 }
 bool CHECKNEARFOE() // check if enemies are nearby, only on normal or higher
 {
-	if ((abs(self.x - target.x) < 200 || abs(self.z - target.z) < 100 ) && difficulty != 2)
+	bool ISFOE=CHECKFOE();
+	if ((abs(self.x - target.x) < 200 || abs(self.z - target.z) < 100 ) && difficulty != 2 && ISFOE == true)
 	{
 		return true;
 	}
 	else
 	{
 		return false;
+	}
+}
+bool CHECKFOE() //check if target is enemy
+{
+	if(target.team != self.team && target.type == 0) 
+	{
+		return true;
+	}
+	else
+	{
+	return false;
 	}
 }
