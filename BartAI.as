@@ -99,6 +99,6 @@ bool CHECKFOE() //check if target is enemy
 	}
 	else
 	{
-	return false;
+		return false;
 	}
 }
