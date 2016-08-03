@@ -1,5 +1,6 @@
 int ego()//Work in progress, please wait warmly until it is ready
 {
+	int FOE = loadTarget(target.num);
 	int CHOOSE;
 	//Check if holding an item, else try to make an item
 	if(self.weapon_held == -1 && self.mp >= 100 && (self.frame < 235 || self.frame > 260))
@@ -55,22 +56,27 @@ int ego()//Work in progress, please wait warmly until it is ready
 		switch(target.id)
 		{
 			case 9501:
+			loadTarget(FOE);
 			FIRE();
 			break;
 
 			case 9502:
+			loadTarget(FOE);
 			EARTH();
 			break;
 	
 			case 9503:
+			loadTarget(FOE);
 			AIR();
 			break;
 		
 			case 9504:
+			loadTarget(FOE);
 			WATER();
 			break;
 		
 			case 9505:
+			loadTarget(FOE);
 			SPIRIT();
 			break;
 		}
@@ -80,10 +86,10 @@ return 0;
 
 void FIRE()
 {
-	bool ISFOE=CHECKFOE();
+	int FOE = loadTarget(target.num);
 	BLAST();
 	//Aux
-	if ( self.mp >= 150 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38 && ISFOE == true)
+	if ( self.mp >= 150 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38)
 	{
 		if ((self.x-target.x) < 0)
 		{
@@ -111,10 +117,10 @@ void FIRE()
 
 void EARTH()
 {
-	bool ISFOE=CHECKFOE();
+	int FOE = loadTarget(target.num);
 	BLAST();
 	//Aux
-	if (ISFOE==true && self.mp >= 150 && abs(self.x-target.x) < 90 && abs (self.z-target.z) < 5)
+	if (self.mp >= 150 && abs(self.x-target.x) < 50 && abs (self.z-target.z) < 5)
 	{
 		if((self.x-target.x) < 0)
 		{
@@ -126,7 +132,7 @@ void EARTH()
 		}
 	}
 	//Detonate
-	if (ISFOE==true && self.mp >= 300 && abs(self.x-target.x) < 190 && abs (self.z-target.z) < 5)
+	if (self.mp >= 300 && abs(self.x-target.x) < 140 && abs (self.z-target.z) < 5)
 	{
 		if((self.x-target.x) < 0)
 		{
@@ -143,9 +149,9 @@ void EARTH()
 
 void AIR()
 {
-	bool ISFOE=CHECKFOE();
+	int FOE = loadTarget(target.num);
 	//Innate Blast
-	if (self.mp >= 75 && ISFOE == true)
+	if (self.mp >= 75)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -156,7 +162,7 @@ void AIR()
 		}
 	}
 	//Aux
-	if (self.mp >= 150 && ISFOE == true)
+	if (self.mp >= 150)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -183,17 +189,10 @@ void AIR()
 
 void WATER()
 {
-	bool NEEDHEAL=false,GOTHEAL=CHECKHEAL(),ISFOE=CHECKFOE();
-	for(int n=0; n<400; n++)
-	{
-		if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team && (target.dark_hp - target.hp) >=100 && GOTHEAL == false)
-		{
-			NEEDHEAL=true;
-		}
-	}
+	int FOE = loadTarget(target.num);
 	BLAST();
 	//Aux
-	if(self.mp >= 150 && ISFOE == true)
+	if(self.mp >= 150)
 	{
 		if(self.facing == true)
 		{
@@ -205,6 +204,19 @@ void WATER()
 		}
 	}
 	//detonate
+	bool NEEDHEAL=false,GOTHEAL=CHECKHEAL();
+	for(int n=0; n<400; n++)
+	{
+		if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team && (target.dark_hp - target.hp) >=100 && GOTHEAL == false)
+		{
+			NEEDHEAL=true;
+		}
+	}
+	if ((self.dark_hp-self.hp) >= 100)
+	{
+		NEEDHEAL=true;
+	}
+	loadTarget(FOE);
 	if(NEEDHEAL == true && abs(self.x-target.x) > 0 && self.mp >= 300)
 	{
 		DJA();
@@ -214,8 +226,8 @@ void WATER()
 void SPIRIT()
 {
 	//Innate Blast
-	bool ISFOE=CHECKFOE();
-	if (self.mp >= 75 && ISFOE == true)
+	int FOE = loadTarget(target.num);
+	if (self.mp >= 75)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -244,8 +256,9 @@ void SPIRIT()
 			}
 		}
 	}
+	loadTarget(FOE);
 	//Detonate
-	if (self.mp >= 300 && ISFOE == true)
+	if (self.mp >= 300)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -261,8 +274,8 @@ void SPIRIT()
 
 void BLAST() //Item Innate Blast for FIRE/EARTH/WATER
 {
-	bool ISFOE=CHECKFOE();
-	if (self.mp >= 75 && ISFOE == true)
+	int FOE = loadTarget(target.num);
+	if (self.mp >= 75)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -288,20 +301,7 @@ bool CHECKHEAL() //check if someone already casted an area heal
 
 bool CHECKNEARFOE() // check if enemies are nearby, only on normal or higher
 {
-	bool ISFOE=CHECKFOE();
-	if ((abs(self.x - target.x) < 100 || abs(self.z - target.z) < 50 ) && difficulty != 2 && ISFOE == true)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-bool CHECKFOE() //check if target is enemy
-{
-	if(target.team != self.team && target.type == 0) 
+	if ((abs(self.x - target.x) < 100 || abs(self.z - target.z) < 20 ) && difficulty != 2)
 	{
 		return true;
 	}
