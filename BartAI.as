@@ -50,7 +50,7 @@ int ego()
   	}
 	bool ISFOE=CHECKFOE();
 	//Dirge for the Deceased
-	if (NEARFOE == false && ISFOE == TRUE && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
+	if (NEARFOE == false && ISFOE == true && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
 	{
 		if (self.facing == true)
 		{
