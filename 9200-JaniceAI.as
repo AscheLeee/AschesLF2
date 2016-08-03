@@ -61,7 +61,7 @@ int ego()
 		}
 	}
 	//Overwhelming Disaster
-	if (ISFOE == true && (self.mp >= 300 || (SAVEMP == 0 && self.mp >= 100 )))
+	if (ISFOE == true && (self.mp >= 300 || (SAVEMP == false && self.mp >= 100 )))
 	{
 		if (abs(self.x-target.x)>=0)
 		{
