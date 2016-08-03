@@ -48,11 +48,11 @@ int ego()
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -120 && abs(self.z-target.z) < 15)
 		{
-			right();
+			right(1,0);
 			DdA();
 		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 120 && abs(self.z-target.z) < 15)
 		{
-			left();
+			left(1,0);
 			DdA();
 		}
 	}
