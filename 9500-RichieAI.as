@@ -80,6 +80,7 @@ return 0;
 
 void FIRE()
 {
+	bool ISFOE=CHECKFOE();
 	BLAST();
 	//Aux
 	if ( self.mp >= 150 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38 && ISFOE == true)
@@ -110,6 +111,7 @@ void FIRE()
 
 void EARTH()
 {
+	bool ISFOE=CHECKFOE();
 	BLAST();
 	//Aux
 	if (ISFOE==true && self.mp >= 150 && abs(self.x-target.x) < 90 && abs (self.z-target.z) < 5)
@@ -212,7 +214,7 @@ void WATER()
 void SPIRIT()
 {
 	//Innate Blast
-	ISFOE=CHECKFOE();
+	bool ISFOE=CHECKFOE();
 	if (self.mp >= 75 && ISFOE == true)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
