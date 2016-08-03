@@ -195,6 +195,19 @@ bool CHECKHEAL() //check if someone already casted an area heal
 	return false;
 }
 
+bool CHECKNEARFOE() // check if enemies are nearby, only on normal or higher
+{
+	bool ISFOE=CHECKFOE();
+	if ((abs(self.x - target.x) < 100 || abs(self.z - target.z) < 50 ) && difficulty != 2 && ISFOE == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool CHECKFOE() //check if target is enemy
 {
 	if(target.team != self.team && target.type == 0) 
@@ -203,6 +216,6 @@ bool CHECKFOE() //check if target is enemy
 	}
 	else
 	{
-	return false;
+		return false;
 	}
 }
