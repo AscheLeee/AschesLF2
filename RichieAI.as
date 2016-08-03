@@ -86,11 +86,24 @@ void FIRE()
 	{
 		if ((self.x-target.x) < 0)
 		{
-			DrA();
+			DrJ();
 		}
 		else
 		{
-			DlA();
+			DlJ();
+		}
+	}
+	//Detonate
+	if (self.mp >= 300)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -120 && abs(self.z-target.z) < 15)
+		{
+			right(1,0);
+			DJA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 120 && abs(self.z-target.z) < 15)
+		{
+			left(1,0);
+			DJA();
 		}
 	}
 }
@@ -98,6 +111,32 @@ void FIRE()
 void EARTH()
 {
 	BLAST();
+	//Aux
+	if (ISFOE==true && self.mp >= 150 && abs(self.x-target.x) < 90 && abs (self.z-target.z) < 5)
+	{
+		if((self.x-target.x) < 0)
+		{
+			DrJ();
+		}
+		else
+		{
+			DlJ();
+		}
+	}
+	//Detonate
+	if (ISFOE==true && self.mp >= 300 && abs(self.x-target.x) < 190 && abs (self.z-target.z) < 5)
+	{
+		if((self.x-target.x) < 0)
+		{
+			right(1,0);
+			DJA();
+		}
+		else
+		{
+			left(1,0);
+			DJA();
+		}
+	}
 }
 
 void AIR()
@@ -125,11 +164,24 @@ void AIR()
 			DlJ();
 		}
 	}
+	//Detonate
+	if (self.mp >= 300)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -120 && abs(self.z-target.z) < 15)
+		{
+			right(1,0);
+			DJA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 120 && abs(self.z-target.z) < 15)
+		{
+			left(1,0);
+			DJA();
+		}
+	}
 }
 
 void WATER()
 {
-	bool NEEDHEAL=false,GOTHEAL=CHECKHEAL();
+	bool NEEDHEAL=false,GOTHEAL=CHECKHEAL(),ISFOE=CHECKFOE();
 	for(int n=0; n<400; n++)
 	{
 		if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team && (target.dark_hp - target.hp) >=100 && GOTHEAL == false)
@@ -138,6 +190,18 @@ void WATER()
 		}
 	}
 	BLAST();
+	//Aux
+	if(self.mp >= 150 && ISFOE == true)
+	{
+		if(self.facing == true)
+		{
+			DlJ();
+		}	
+		else
+		{
+			DrJ();
+		}
+	}
 	//detonate
 	if(NEEDHEAL == true && abs(self.x-target.x) > 0 && self.mp >= 300)
 	{
@@ -147,13 +211,25 @@ void WATER()
 
 void SPIRIT()
 {
+	//Innate Blast
+	ISFOE=CHECKFOE();
+	if (self.mp >= 75 && ISFOE == true)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+	}
 	//Aux; attempt to deflect an incoming projectile with spirit shield. Chance increases with difficulty.
 	int BLOCKCHANCE=rand(4); //easy = 25%, normal = 50%, difficult = 75% crazy = 100%
 	if ((BLOCKCHANCE - difficulty) >= 1)
 	{
 		for(int n=0; n<400; n++)
 		{
-			if(loadTarget(n) == 3 && target.team != self.team && target.state == 3000)
+			if(loadTarget(n) == 3 && target.team != self.team && target.state == 3000 && target.x_velocity != 0)
 			{
 				if ((self.x-target.x) < -50 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -50)
 				{
@@ -164,6 +240,19 @@ void SPIRIT()
 					DlJ();
 				}
 			}
+		}
+	}
+	//Detonate
+	if (self.mp >= 300 && ISFOE == true)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			right(1,0);
+			DJA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			left(1,0);
+			DJA();
 		}
 	}
 }
