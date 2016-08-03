@@ -1,13 +1,14 @@
 int ego()
 {
+	bool NEARFOE=CHECKNEARFOE();
 	//Self-Immolation
-	if (self.hp > 300 && self.mp < 300 && (abs(self.x - target.x) > 200 || abs(self.z - target.z) > 100 || difficulty == 2 ))
+	if (self.hp > 300 && self.mp < 300 && ( NEARFOE == false || difficulty == 2 ))
 	{
 		DdJ(); //Begin Self-Immolation
 	}
 	if (self.frame == 254 )
 	{
-		if (self.hp > 300 && self.mp < 350 && (abs(self.x - target.x) > 200 || abs(self.z - target.z) > 100 || difficulty == 2 ))
+		if (self.hp > 300 && self.mp < 350 && ( NEARFOE == false || difficulty == 2 ))
 		{
 			A(1,0);
 		}else
@@ -78,5 +79,29 @@ void COMBUST()
 	else
 	{
 		DrJ();
+	}
+}
+
+bool CHECKNEARFOE() // check if enemies are nearby, only on normal or higher
+{
+	bool ISFOE=CHECKFOE();
+	if ((abs(self.x - target.x) < 200 || abs(self.z - target.z) < 100 ) && difficulty != 2 && ISFOE == true)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool CHECKFOE() //check if target is enemy
+{
+	if(target.team != self.team && target.type == 0) 
+	{
+		return true;
+	}
+	else
+	{
+	return false;
 	}
 }
