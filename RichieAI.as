@@ -169,3 +169,12 @@ bool CHECKHEAL() //check if someone already casted an area heal
 	}
 	return false;
 }
+
+bool CHECKBULLET() //check if there's an incoming hostile bullet
+{//mobile doesn't have indentation, deal with it. 
+  for(int n=0; n<400; n++) //WIP
+  {
+     if(loadTarget(n) == 3 && target.team != self.team && target.state == 3000)
+     {
+        if
+}
