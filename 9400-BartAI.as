@@ -39,15 +39,6 @@ int ego()
 	{
 		A(1,0);
 	}
-	//Prioritise healing over damage dealing - only on difficult or crazy
-	if (difficulty <= 0)
-	{
-	GOTHEAL=CHECKHEAL();
-		if (GOTHEAL==false && NEEDHEAL==true)
-		{
-		return 0;
-		}
-  	}
 	bool ISFOE=CHECKFOE();
 	//Dirge for the Deceased
 	if (NEARFOE == false && ISFOE == true && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
