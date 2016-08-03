@@ -82,7 +82,7 @@ void FIRE()
 {
 	BLAST();
 	//Aux
-	if ( self.mp >= 150 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38)
+	if ( self.mp >= 150 && abs(self.x-target.x) < 219 && abs (self.z-target.z) < 38 && ISFOE == true)
 	{
 		if ((self.x-target.x) < 0)
 		{
@@ -102,8 +102,9 @@ void EARTH()
 
 void AIR()
 {
+	bool ISFOE=CHECKFOE();
 	//Innate Blast
-	if (self.mp >= 75)
+	if (self.mp >= 75 && ISFOE == true)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -114,7 +115,7 @@ void AIR()
 		}
 	}
 	//Aux
-	if (self.mp >= 150)
+	if (self.mp >= 150 && ISFOE == true)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -169,7 +170,8 @@ void SPIRIT()
 
 void BLAST() //Item Innate Blast for FIRE/EARTH/WATER
 {
-	if (self.mp >= 75)
+	bool ISFOE=CHECKFOE();
+	if (self.mp >= 75 && ISFOE == true)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
@@ -191,4 +193,16 @@ bool CHECKHEAL() //check if someone already casted an area heal
 		}
 	}
 	return false;
+}
+
+bool CHECKFOE() //check if target is enemy
+{
+	if(target.team != self.team && target.type == 0) 
+	{
+		return true;
+	}
+	else
+	{
+	return false;
+	}
 }
