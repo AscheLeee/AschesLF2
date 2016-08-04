@@ -67,6 +67,12 @@ int ego()
 			DlA();
 		}
 	}
+	//Backflip when burned, chance scales with difficulty.
+	int FLIPCHANCE=rand(4); //easy = 25%, normal = 50%, difficult = 75% crazy = 100%
+	if (self.state == 18 && (FLIPCHANCE - difficulty) >= 1)
+	{
+		J(1,0);
+	}
 return 0;
 }
 
