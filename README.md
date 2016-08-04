@@ -28,3 +28,7 @@ Janice is an easy-to-use healer character, so the AI is quite straightforward an
 Bart, like Janice, is capable of healing. However, he differs in two main aspects.
 
 Firstly, his skills take significantly longer to use. As such, I created a CHECKNEARFOE function to check if enemies are nearby before attempting to use skills that might be interrupted (Not applicable to easy mode). Secondly, he is able to cancel his skills before they are completed. As such, a check to ensure that he isn't currently using a skill before starting another skill is required, so that he does not end up wasting MP excessively by constantly cancelling his own skills.
+
+<b>Richie</b>
+
+Richie's AI is probably the most complicated one. He is powerless without items, however, he can create his own items, and gain different skills depending on his equipped items. As such, the AI is programmed to firstly check if he has an item, and to randomly create one if he does not. It is also programmed to act differently depending on what item he has on hand.
