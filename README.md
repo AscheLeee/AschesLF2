@@ -32,3 +32,7 @@ Firstly, his skills take significantly longer to use. As such, I created a CHECK
 <b>Richie</b>
 
 Richie's AI is probably the most complicated one. He is powerless without items, however, he can create his own items, and gain different skills depending on his equipped items. As such, the AI is programmed to firstly check if he has an item, and to randomly create one if he does not. It is also programmed to act differently depending on what item he has on hand.
+
+<b>Stage Bosses</b>
+
+I wanted to try something new with stage bosses: having them change attack patterns each time they are defeated. I also wanted the attack patterns to vary depending on the difficulty. As such, my code has the boss use a skill depending on the stage and phase. Within each of the boss' skills, there is an option to press Attack/Jump/Defend at the right moment to increase the projectiles/speed of the skill, and the boss is coded to press the appropriate key depending on the difficulty.
