@@ -55,7 +55,7 @@ int ego()
 	//Overwhelming Disaster
 	if (self.mp >= 300 || (SAVEMP == false && self.mp >= 100 ))
 	{
-		if (abs(self.x-target.x)>=0)
+		if (abs(self.x-target.x)>=0 && abs(self.x-target.x)<= 300)
 		{
 		DuA();
 		}
