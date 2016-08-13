@@ -41,7 +41,7 @@ int ego()
 	}
 	loadTarget(FOE);
 	//Dirge for the Deceased
-	if (NEARFOE == false && self.frame <235 && (self.mp >= 350 || (SAVEMP == false && self.mp >= 150)))
+	if (NEARFOE == false && self.frame <235 && (self.mp >= 325 || (SAVEMP == false && self.mp >= 125)))
 	{
 		if (self.facing == true)
 		{
