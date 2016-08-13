@@ -30,7 +30,7 @@ int ego()
 		}
 		RESET();
 	}
-	SPELLCARD(240); //SC1 difficulty
+	SPELLCARD(239); //SC1 difficulty
 	//Final Boss
 	if(current_stage == 4 && self.state == 0 && self.x < 890 && self.x > 10)
 	{
@@ -60,6 +60,33 @@ int ego()
 	SPELLCARD(252); //Combustion difficulty
 	SPELLCARD(273); //Swirling Ash Difficulty
 	SPELLCARD(293); //Finale Difficulty
+	
+	//Final Boss Misc Attacks
+	//SC1 again *no spam*
+	if (current_stage == 4 && self.state == 0 && self.mp >= 430)
+	{
+		if ((self.x-target.x) < -20 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 20 && (self.x-target.x) < 220 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+		RESET();
+	}
+	//super
+	if (current_stage == 4)
+	{
+		if ((self.x-target.x) < -1 && (self.x-target.x) > -30 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			right(1,0);
+			DuA();
+		}else if ((self.x-target.x) > 1 && (self.x-target.x) < 30 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			left(1,0);
+			DuA();
+		}
+	}
 return 0;
 }
 
