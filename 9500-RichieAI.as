@@ -69,14 +69,17 @@ int ego()
 		}
  	}
 	//strafe
-	if ((self.x-target.x) < -1 && (self.x-target.x) > -10 && abs(self.z-target.z) < 5 && target.y > -5)
+	if(abs(self.z-target.z) < 5 && target.y > -5 && self.mp >=75)
 	{
-		right(1,0);
-		DuA();
-	}else if ((self.x-target.x) > 1 && (self.x-target.x) < 10 && abs(self.z-target.z) < 5 && target.y > -5)
-	{
-		left(1,0);
-		DuA();
+		if ((self.x-target.x) < -1 && (self.x-target.x) > -10 )
+		{
+			right(1,0);
+			DuA();
+		}else if ((self.x-target.x) > 1 && (self.x-target.x) < 10)
+		{
+			left(1,0);
+			DuA();
+		}
 	}
 return 0;
 }
