@@ -1,52 +1,39 @@
-int ego()//Work in progress, please wait warmly until it is ready
+int ego()
 {
 	int FOE = loadTarget(target.num);
 	int CHOOSE;
 	//Check if holding an item, else try to make an item
 	if(self.weapon_held == -1 && self.mp >= 100 && (self.frame < 235 || self.frame > 260))
 	{
-		CHOOSE=rand(5); //0 - fire (D), 1 - earth(AD), 2 - air(AAD), 3 - water(JJD), 4 - spirit(JD)
-		DdJ();		
+		DJA();		
 	}
-	switch(self.frame)
+	if(self.frame == 237)
 	{
-	case 237: //preview fire
-		if(CHOOSE == 0)
+		CHOOSE=rand(5); //0 - fire (DuJ), 1 - earth(DdJ), 2 - air(DuA), 3 - water(DdA), 4 - spirit(DfA)
+		switch(CHOOSE)
 		{
-			D(1,0); //confirm fire
-		}else if(CHOOSE <= 2)//forward cycling, for earth or air
-		{
-			A(1,0); 
+			case 0:
+			DuJ();
+			break;
+			case 1:
+			DdJ();
+			break;
+			case 2:
+			DuA();
+			break;
+			case 3:
+			DdA();
+			break;
+			default:
+			if(self.facing == true)
+			{
+				DlA();
+			}
+			else
+			{
+				DrA();
+			}
 		}
-		else if(CHOOSE >=3) // backwards cycling, for spirit or water
-		{
-			J(1,0);
-		}
-	break;
-	case 242: //preview earth
-		if(CHOOSE == 1)
-		{
-			D(1,0); //confirm earth
-		}else
-		{
-			A(1,0); //preview air
-		}
-	break;
-	case 247:
-		D(1,0); //confirm air
-	break;
-	case 257: //preview spirit
-		if(CHOOSE == 4)
-		{
-			D(1,0); //confirm spirit
-		}else
-    		{
-			J(1,0); //preview water
-    		}
-  	break;
-  	case 252: //preview water
-  		D(1,0); //confirm water
-	break;
 	}
 	
 	//Call a function based on item in hand
@@ -81,6 +68,16 @@ int ego()//Work in progress, please wait warmly until it is ready
 			break;
 		}
  	}
+	//strafe
+	if ((self.x-target.x) < -1 && (self.x-target.x) > -10 && abs(self.z-target.z) < 5 && target.y > -5)
+	{
+		right(1,0);
+		DuA();
+	}else if ((self.x-target.x) > 1 && (self.x-target.x) < 10 && abs(self.z-target.z) < 5 && target.y > -5)
+	{
+		left(1,0);
+		DuA();
+	}
 return 0;
 }
 
@@ -106,11 +103,11 @@ void FIRE()
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -120 && abs(self.z-target.z) < 15)
 		{
 			right(1,0);
-			DJA();
+			DdJ();
 		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 120 && abs(self.z-target.z) < 15)
 		{
 			left(1,0);
-			DJA();
+			DdJ();
 		}
 	}
 }
@@ -137,12 +134,12 @@ void EARTH()
 		if((self.x-target.x) < 0)
 		{
 			right(1,0);
-			DJA();
+			DdJ();
 		}
 		else
 		{
 			left(1,0);
-			DJA();
+			DdJ();
 		}
 	}
 }
@@ -178,11 +175,11 @@ void AIR()
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -120 && abs(self.z-target.z) < 15)
 		{
 			right(1,0);
-			DJA();
+			DdJ();
 		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 120 && abs(self.z-target.z) < 15)
 		{
 			left(1,0);
-			DJA();
+			DdJ();
 		}
 	}
 }
@@ -219,7 +216,7 @@ void WATER()
 	loadTarget(FOE);
 	if(NEEDHEAL == true && abs(self.x-target.x) > 0 && self.mp >= 300)
 	{
-		DJA();
+		DdJ();
 	}
 }
 
@@ -263,11 +260,11 @@ void SPIRIT()
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			right(1,0);
-			DJA();
+			DdJ();
 		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			left(1,0);
-			DJA();
+			DdJ();
 		}
 	}
 }
