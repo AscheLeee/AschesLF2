@@ -33,6 +33,10 @@ Firstly, his skills take significantly longer to use. As such, I created a CHECK
 
 Richie's AI is probably the most complicated one. He is powerless without items, however, he can create his own items, and gain different skills depending on his equipped items. As such, the AI is programmed to firstly check if he has an item, and to randomly create one if he does not. It is also programmed to act differently depending on what item he has on hand.
 
+<b>Luce</b>
+
+Luce is a fast paced character who excels in combos, and has a unique trait, "Resonance", which reduces the MP cost of skills if they are used in quick succession at the right timing. As such, when attempting to perform a skill, not only does the AI check whether it has enough MP, it also checks if it is eligible for MP cost reduction, and if so, if it would have enough MP after the cost reduction.
+
 <b>Stage Bosses</b>
 
 I wanted to try something new with stage bosses: having them change attack patterns each time they are defeated. I also wanted the attack patterns to vary depending on the difficulty. As such, my code has the boss use a skill depending on the stage and phase. Within each of the boss' skills, there is an option to press Attack/Jump/Defend at the right moment to increase the projectiles/speed of the skill, and the boss is coded to press the appropriate key depending on the difficulty.
