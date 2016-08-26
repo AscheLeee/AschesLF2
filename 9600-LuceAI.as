@@ -28,7 +28,7 @@ int ego()
 	//Pillar
 	if ( (self.mp >= 350 || (MPCOSTDOWN == true && self.mp >= 275) ) && abs(self.x-target.x) <= 30 && abs(self.z-target.z) <= 5)
 	{
-		DuJ();
+		DJA();
 	}
 	//laser
 	if (self.mp >= 150  || (MPCOSTDOWN == true && self.mp >= 100) )
