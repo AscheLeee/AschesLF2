@@ -275,7 +275,7 @@ void SPIRIT()
 void BLAST() //Item Innate Blast for FIRE/EARTH/WATER
 {
 	int FOE = loadTarget(target.num);
-	if (self.mp >= 75)
+	if (self.mp >= 75 && target.state != 14)
 	{
 		if ((self.x-target.x) < -10 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
