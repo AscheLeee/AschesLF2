@@ -57,7 +57,7 @@ int ego()
 		}
 	}
 	//Burning Ash Blast
-	if (self.mp >= 75)
+	if (self.mp >= 75 && target.state != 14)
 	{
 		if ((self.x-target.x) < -20 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
