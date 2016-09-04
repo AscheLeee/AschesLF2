@@ -3,7 +3,7 @@ int ego()
 	int FOE = loadTarget(target.num);
 	int CHOOSE;
 	//Check if holding an item, else try to make an item
-	if(self.weapon_held == -1 && self.mp >= 100 && (self.frame < 235 || self.frame > 260))
+	if(self.weapon_held == -1 && self.mp >= 60 && (self.frame < 235 || self.frame > 260))
 	{
 		DJA();		
 	}
