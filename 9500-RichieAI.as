@@ -239,7 +239,7 @@ void SPIRIT()
 	}
 	//Aux; attempt to deflect an incoming projectile with spirit shield. Chance increases with difficulty.
 	int BLOCKCHANCE=rand(4); //easy = 25%, normal = 50%, difficult = 75% crazy = 100%
-	if ((BLOCKCHANCE - difficulty) >= 1)
+	if ((BLOCKCHANCE - difficulty) >= 1 && self.mp >= 150)
 	{
 		for(int n=0; n<400; n++)
 		{
