@@ -57,3 +57,7 @@ Stage 2 does not feature a unique AI. This is because stage 2 is made differentl
 <u>Stage 3</u>
 
 Stage 3's boss fights just like any other character. However, in the later phases, he will use upgraded versions of his moves by pressing 'Attack' or 'Jump' at the right moment. There's also something special for that final phase...
+
+<b>Minions</b>
+
+Minions are the weak, lesser enemies that you'll sometimes encounter during the stage. They have fewer moves, and less complicated AI.
