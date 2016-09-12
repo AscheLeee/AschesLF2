@@ -13,10 +13,10 @@ int ego()
 			DdA();
 		}
 	}
-	//Doppelg‰nger Attacks
+	//Doppelg√§nger Attacks
 	if (self.mp >= 75 && target.state != 14)
 	{
-		//Doppelg‰nger Attacks - Send Clone
+		//Doppelg√§nger Attacks - Send Clone
 		if ((self.x-target.x) < -80 && (self.x-target.x) > -120 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			right(1,0);
@@ -26,7 +26,7 @@ int ego()
 			left(1,0);
 			DdJ();
 		}
-		//Doppelg‰nger Attacks - Send Self
+		//Doppelg√§nger Attacks - Send Self
 		if ((self.x-target.x) < -20 && (self.x-target.x) > -80 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			right(1,0);
