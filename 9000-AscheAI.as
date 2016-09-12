@@ -59,10 +59,10 @@ int ego()
 	//Burning Ash Blast
 	if (self.mp >= 75 && target.state != 14)
 	{
-		if ((self.x-target.x) < -20 && (self.x-target.x) > -220 && abs(self.z-target.z) < 5 && target.y > -5)
+		if ((self.x-target.x) < -120 && (self.x-target.x) > -330 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			DrA();
-		}else if ((self.x-target.x) > 20 && (self.x-target.x) < 220 && abs(self.z-target.z) < 5 && target.y > -5)
+		}else if ((self.x-target.x) > 120 && (self.x-target.x) < 330 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			DlA();
 		}
@@ -72,6 +72,11 @@ int ego()
 	if (self.state == 18 && (FLIPCHANCE - difficulty) >= 1)
 	{
 		J(1,0);
+	}
+	//Flame Of Reincarnation
+	if(self.hp >= 150 && self.hp <= 400 && self.mp >= 50 && NEARFOE == false && (self.dark_hp - self.hp) >= 75 )
+	{
+		DJA();
 	}
 return 0;
 }
