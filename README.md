@@ -19,9 +19,17 @@ Asche is the first custom character I made for this mod. He is a supportive dama
 
 My AI can analyse potential targets, and determine the best times to use "Spontaneous Combustion". I have also set it to scale with difficulty; on easy, it will spam indiscriminately, while it will demonstrate its maximum proficiency on difficult mode.
 
+<b>Moeyy</b>
+
+Although Moeyy's skills are unconventional and made for a 'tricky' playstyle, it was surprisingly straightforward to program the AI. It should be pretty much self-explanatory.
+
 <b>Janice</b>
 
 Janice is an easy-to-use healer character, so the AI is quite straightforward and self-explanatory.
+
+<b>Markus</b>
+
+Markus is a brawler. He specialises in 'grab' attacks, and gains access to more powerful manuvers if he successfully grabs his opponent. As such, the AI is programmed to check if he is currently grabbing the opponent, and utilise the 'grab exclusive' manuvers if so. Otherwise, the AI will attempt to grab the opponent, or fight normally.
 
 <b>Bart</b>
 
@@ -39,4 +47,13 @@ Luce is a fast paced character who excels in combos, and has a unique trait, "Re
 
 <b>Stage Bosses</b>
 
+<u>Stage 1</u>
+
 I wanted to try something new with stage bosses: having them change attack patterns each time they are defeated. I also wanted the attack patterns to vary depending on the difficulty. As such, my code has the boss use a skill depending on the stage and phase. Within each of the boss' skills, there is an option to press Attack/Jump/Defend at the right moment to increase the projectiles/speed of the skill, and the boss is coded to press the appropriate key depending on the difficulty.
+
+<u>Stage 2 has no unique AI</u>
+Stage 2 does not feature a unique AI. This is because stage 2 is made differently; the player will rescue hostages throughout the stage, and lead their group to defeat the enemies. The 'final boss' is, in fact, a large group of enemies who use default AI.
+
+<u>Stage 3</u>
+
+Stage 3's boss fights just like any other character. However, in the later phases, he will use upgraded versions of his moves by pressing 'Attack' or 'Jump' at the right moment. There's also something special for that final phase...
