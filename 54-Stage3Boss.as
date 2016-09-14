@@ -12,6 +12,9 @@ int ego()
 		if(self.frame < 310)
 		{
 			DJA();
+		}else
+		{
+			RESET_MOVE();
 		}
 		return 1;
 	}
@@ -54,6 +57,14 @@ void RESET() //Reset DJA inputs
 	A(0,0);
 	J(0,0);
 	D(0,0);
+}
+
+void RESET_MOVE() //Reset movement inputs
+{
+	up(0,0);
+	down(0,0);
+	left(0,0);
+	right(0,0);
 }
 
 void ATTACKLEVELS()
