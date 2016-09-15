@@ -3,7 +3,7 @@ void id()
 	//choose a target
 	for (int n = 0; n < 400; n++)
 	{
-        if (loadTarget(n) == 0 && target.team != self.team)
+		if (loadTarget(n) == 0 && target.team != self.team)
 		break;
 	}
 	//in stage mode, move to next stage if cleared
