@@ -1,7 +1,7 @@
 void id()
 {
 	//choose a target
-    for (int n = 0; n < 400; n++)
+	for (int n = 0; n < 400; n++)
 	{
         if (loadTarget(n) == 0 && target.team != self.team)
 		break;
