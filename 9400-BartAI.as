@@ -103,12 +103,12 @@ void id()
 	if(NEEDHEAL == false || GOTHEAL == true)
 	{
 		//xaxis chasing
-		if((self.x-target.x) < -400)
+		if((self.x-target.x) <= -400)
 		{
 			right(1,0);
 			right(1,0);				
 		}
-		if((self.x-target.x) > 400)
+		if((self.x-target.x) >= 400)
 		{
 			left(1,0);
 			left(1,0);				
