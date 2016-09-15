@@ -82,7 +82,6 @@ void id()
 	{
 		A(1,0);
 	}
-	loadTarget(FOE);
 	//Dirge for the Deceased
 	if (NEARFOE == false && self.frame <235 && (self.mp >= 325 || (SAVEMP == false && self.mp >= 125)))
 	{
