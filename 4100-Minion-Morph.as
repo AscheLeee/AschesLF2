@@ -10,7 +10,7 @@ int ego()
 		DlJ();
 	}
 	//transform into caught enemy
-	if(TARGET_MAIN == true && self.frame >= 120 && self.frame <= 124 && self.mp >= 150)
+	if(TARGET_MAIN == true && self.frame >= 120 && self.frame <= 124 && self.mp >= 150 & target.frame >= 130 && target.frame <= 144)
 	{
 		DJA();
 	}
