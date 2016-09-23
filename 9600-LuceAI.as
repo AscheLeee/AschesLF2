@@ -18,17 +18,17 @@ int ego()
 		if ((self.x-target.x) < -1 && (self.x-target.x) > -30 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			right(1,0);
-			DuA();
+			DJA();
 		}else if ((self.x-target.x) > 1 && (self.x-target.x) < 30 && abs(self.z-target.z) < 5 && target.y > -5)
 		{
 			left(1,0);
-			DuA();
+			DJA();
 		}
 	}
 	//Pillar
 	if ( (self.mp >= 350 || (MPCOSTDOWN == true && self.mp >= 275) ) && abs(self.x-target.x) <= 30 && abs(self.z-target.z) <= 5 && target.state != 14)
 	{
-		DJA();
+		DuJ();
 	}
 	//laser
 	if ((self.mp >= 150  || (MPCOSTDOWN == true && self.mp >= 100) ) && target.state != 14)
@@ -60,6 +60,7 @@ bool RESONANCE(int FRAME)
 		case 236: case 237: //laser
 		case 242: case 243: //highkick
 		case 252: case 253: //speedkick
+		case 4: //standing
 		return true;
 		default:
 		if((FRAME >= 265 && FRAME <= 272) || (FRAME >= 285 && FRAME <= 292)) //pillar, selfheal
