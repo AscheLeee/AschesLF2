@@ -5,7 +5,7 @@ int ego()
 	//Check if holding an item, else try to make an item
 	if(self.weapon_held == -1 && self.mp >= 60 && (self.frame < 235 || self.frame > 260))
 	{
-		DJA();		
+		DJA();
 	}
 	if(self.frame == 237)
 	{
@@ -42,30 +42,61 @@ int ego()
 		loadTarget(self.weapon_held);
 		switch(target.id)
 		{
-			case 9501:
+			case 9501: //Created weapons
 			loadTarget(FOE);
 			FIRE();
 			break;
-
 			case 9502:
 			loadTarget(FOE);
 			EARTH();
-			break;
-	
+			break;	
 			case 9503:
 			loadTarget(FOE);
 			AIR();
-			break;
-		
+			break;		
 			case 9504:
 			loadTarget(FOE);
 			WATER();
 			break;
-		
 			case 9505:
 			loadTarget(FOE);
 			SPIRIT();
 			break;
+			
+			case 100: case 101: case 124: //Refining
+			loadTarget(FOE);
+			if(self.mp >= 75 && (self.frame < 235 || self.frame > 260))
+			{
+				DuA();
+			}
+			break;
+			
+			case 131: //Common or refined
+			loadTarget(FOE);
+			BATBAT();
+			break;
+			case 137:
+			loadTarget(FOE);
+			CURSED();
+			break;
+			case 140:
+			loadTarget(FOE);
+			MOLOTOV();
+			break;
+			case 123:
+			loadTarget(FOE);
+			BEER();
+			break;
+			case 130:
+			loadTarget(FOE);
+			MAGIC_BOOMERANG();
+			break;
+			case 122:
+			loadTarget(FOE);
+			MILK();
+			break;
+			default:
+			loadTarget(FOE);
 		}
  	}
 	//strafe
@@ -84,6 +115,7 @@ int ego()
 return 0;
 }
 
+//Weapon Functions for created weapons
 void FIRE()
 {
 	int FOE = loadTarget(target.num);
@@ -287,6 +319,148 @@ void BLAST() //Item Innate Blast for FIRE/EARTH/WATER
 	}
 }
 
+//Weapon functions for common / refined items
+
+void BATBAT()
+{
+	int FOE = loadTarget(target.num);
+	BLAST();
+	//Aux
+	if(self.mp >= 150)
+	{
+		if(self.facing == true)
+		{
+			DlJ();
+		}	
+		else
+		{
+			DrJ();
+		}
+	}
+	//Detonate
+	if (self.mp >= 300)
+	{
+		if(self.facing == true)
+		{
+			DlJ();
+		}	
+		else
+		{
+			DrJ();
+		}
+	}
+}
+
+void CURSED()
+{
+	int FOE = loadTarget(target.num);
+	//Aux
+	if(self.mp >= 150)
+	{
+		if(self.facing == true)
+		{
+			DlJ();
+		}	
+		else
+		{
+			DrJ();
+		}
+	}
+	//Innate Blast
+	if(self.mp >= 75)
+	{
+		if(self.facing == true)
+		{
+			DlA();
+		}	
+		else
+		{
+			DrA();
+		}
+	}	
+}
+
+void MOLOTOV()
+{
+	int FOE = loadTarget(target.num);
+	//Aux
+	if (self.mp >= 150)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+	}	
+	//Detonate
+	if (self.mp >= 300)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -120 && abs(self.z-target.z) < 15)
+		{
+			right(1,0);
+			DdJ();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 120 && abs(self.z-target.z) < 15)
+		{
+			left(1,0);
+			DdJ();
+		}
+	}
+}
+
+void BEER()
+{
+	int FOE = loadTarget(target.num);
+	//Aux
+	if (self.mp >= 150)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+	}	
+}
+
+void MILK()
+{
+	int FOE = loadTarget(target.num);	
+	//Blast
+	if (self.mp >= 75)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrA();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 100 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlA();
+		}
+	}
+}
+
+void MAGIC_BOOMERANG()
+{
+	int FOE = loadTarget(target.num);
+	BLAST();
+	//detonate
+	if (self.mp >= 300)
+	{
+			if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 15)
+			{
+				right(1,0);
+				DdJ();
+			}else if ((self.x-target.x) > 10 && (self.x-target.x) < 300 && abs(self.z-target.z) < 15)
+			{
+				left(1,0);
+				DdJ();
+			}
+	}		
+}
+
+//Other functions
 bool CHECKHEAL() //check if someone already casted an area heal
 {
 	for (int n=0; n<400; n++)
