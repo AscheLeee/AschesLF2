@@ -18,7 +18,7 @@ void id()
 	bool GOTALLY=false,NEEDHEAL=false,GOTHEAL=CHECKHEAL();
 	for (int n=0; n<400; n++)
 	{
-		  if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team)
+		  if(loadTarget(n) == 0 && target.hp > 0 && target.team == self.team && target.num != self.num)
 		{
 			GOTALLY=true;
 			if( (target.dark_hp - target.hp) >= 100 && GOTHEAL==false)
