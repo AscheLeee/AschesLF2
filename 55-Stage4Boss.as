@@ -32,10 +32,6 @@ int ego()
 	if ( self.frame >= 265 && self.frame <= 273 && ( (self.facing == false && LAZOR_R == false) || (self.facing == true && LAZOR_L == false) ) )
 	{
 		D(1,0);
-	}	
-	if ((self.x-target.x) > 120 && (self.x-target.x) < 400 && abs(self.z-target.z) < 5 && target.y > -5)
-	{
-		DlJ();
 	}
 	//Overwhelming Disaster
 	if (self.mp >= 100 && abs(self.x-target.x)>=0 && abs(self.x-target.x)<= 300)
