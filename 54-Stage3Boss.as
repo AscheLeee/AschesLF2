@@ -7,7 +7,7 @@ int ego()
 		ATTACKLEVELS();
 		return 0;
 	}
-	else if(self.team == 5 && current_phase == 5) //SelfDetonate
+	else if(self.team == 5 && current_phase == 5 && current_stage == 24) //SelfDetonate
 	{
 		if(self.frame < 310)
 		{
@@ -80,14 +80,29 @@ void ATTACKLEVELS()
 
 void AORJ()
 {
-	switch(current_phase)
+	if(current_stage == 24 && self.team == 5)
 	{
-		case 3:
-		A(1,0);
-		break;
-		case 4:
-		J(1,0);
-		break;
+		switch(current_phase)
+		{
+			case 3:
+			A(1,0);
+			break;
+			case 4:
+			J(1,0);
+			break;
+		}
 	}
-
+	int CHOOSE = rand(3);
+	if(current_stage == 43 && self.team == 5)
+	{
+		switch(CHOOSE)
+		{
+			case 1:
+			A(1,0);
+			break;
+			case 2:
+			J(1,0);
+			break;
+		}
+	}
 }
