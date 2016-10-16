@@ -65,7 +65,7 @@ int ego()
 			
 			case 100: case 101: case 124: //Refining
 			loadTarget(FOE);
-			if(self.mp >= 75 && (self.frame < 235 || self.frame > 260))
+			if(self.mp >= 75 && self.frame < 235 )
 			{
 				DuA();
 			}
