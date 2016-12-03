@@ -65,7 +65,7 @@ int ego()
 			
 			case 100: case 101: case 124: //Refining
 			loadTarget(FOE);
-			if(self.mp >= 75 && self.frame < 235 )
+			if(self.mp >= 75 && self.frame < 235)
 			{
 				DuA();
 			}
@@ -94,6 +94,10 @@ int ego()
 			case 122:
 			loadTarget(FOE);
 			MILK();
+			break;
+			case 143:
+			loadTarget(FOE);
+			ICE_SHURIKEN();			
 			break;
 			default:
 			loadTarget(FOE);
@@ -458,6 +462,36 @@ void MAGIC_BOOMERANG()
 				DdJ();
 			}
 	}		
+}
+
+void ICE_SHURIKEN()
+{
+	int FOE = loadTarget(target.num);
+	BLAST();
+	//Aux
+	if (self.mp >= 150)
+	{
+		if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DrJ();
+		}else if ((self.x-target.x) > 10 && (self.x-target.x) < 300 && abs(self.z-target.z) < 5 && target.y > -5)
+		{
+			DlJ();
+		}
+	}
+	//detonate
+	if (self.mp >= 300)
+	{
+			if ((self.x-target.x) < -10 && (self.x-target.x) > -300 && abs(self.z-target.z) < 15)
+			{
+				right(1,0);
+				DdJ();
+			}else if ((self.x-target.x) > 10 && (self.x-target.x) < 300 && abs(self.z-target.z) < 15)
+			{
+				left(1,0);
+				DdJ();
+			}
+	}	
 }
 
 //Other functions
